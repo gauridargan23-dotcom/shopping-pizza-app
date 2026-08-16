@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>About Us - Slice & Spice</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background: #0a0a0a;
+        color: #f8fafc;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      .about-container {
+        max-width: 1000px;
+      }
+
+      .hero {
+        background:
+          linear-gradient(
+            rgba(0, 0, 0, 0.65),
+            rgba(0, 0, 0, 0.8)
+          ),
+          url("https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop")
+            center/cover;
+
+        border-radius: 25px;
+        padding: 80px 30px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: 800;
+      }
+
+      .orange {
+        color: #ff5722;
+      }
+
+      .section-card {
+        background: #141416;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 30px;
+        height: 100%;
+        transition: 0.3s;
+      }
+
+      .section-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 87, 34, 0.4);
+      }
+
+      .icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+
+      .section-card h3 {
+        font-weight: 700;
+      }
+
+      .section-card p {
+        color: #94a3b8;
+        line-height: 1.7;
+      }
+
+      .tag {
+        display: inline-block;
+        background: rgba(255, 87, 34, 0.12);
+        color: #ff7043;
+        padding: 8px 15px;
+        border-radius: 20px;
+        margin: 5px;
+        font-weight: 600;
+      }
+
+      .btn-menu {
+        background: linear-gradient(135deg, #ff5722, #f4511e);
+        border: none;
+        color: white;
+        border-radius: 14px;
+        padding: 13px 25px;
+        font-weight: 600;
+      }
+
+      .btn-menu:hover {
+        color: white;
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container about-container py-5">
+
+      <!-- Hero -->
+      <div class="hero mb-5">
+        <div class="display-4 mb-3">🍕</div>
+
+        <h1>
+          Welcome to <span class="orange">Slice & Spice</span>
+        </h1>
+
+        <p class="lead text-light opacity-75 mt-3">
+          Where every slice meets the spice.
+        </p>
+      </div>
+
+      <!-- Our Story -->
+      <div class="section-card mb-4">
+        <h2 class="fw-bold mb-3">🍕 Our Story</h2>
+
+        <p>
+          Slice & Spice is a pizza ordering experience created for people
+          who love great pizza and bold flavours. From classic vegetarian
+          favourites to delicious non-vegetarian creations, our menu brings
+          something for every pizza lover.
+        </p>
+
+        <p>
+          We believe pizza should be more than just food — it should be an
+          experience worth sharing with friends and family.
+        </p>
+      </div>
+
+      <!-- Why Choose Us -->
+      <h2 class="text-center fw-bold mb-4">
+        Why <span class="orange">Slice & Spice?</span>
+      </h2>
+
+      <div class="row g-4 mb-5">
+
+        <div class="col-md-4">
+          <div class="section-card text-center">
+            <div class="icon">🥬</div>
+            <h3>Fresh Ingredients</h3>
+            <p>
+              Fresh vegetables, delicious toppings and quality ingredients
+              come together in every pizza.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="section-card text-center">
+            <div class="icon">🔥</div>
+            <h3>Perfectly Baked</h3>
+            <p>
+              Every pizza is prepared with care and baked to give you a
+              delicious crust and flavourful toppings.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="section-card text-center">
+            <div class="icon">❤️</div>
+            <h3>Made for Pizza Lovers</h3>
+            <p>
+              Whether you love classic flavours or spicy creations,
+              there's a slice waiting for you.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Menu Categories -->
+      <div class="section-card text-center mb-5">
+
+        <h2 class="fw-bold mb-3">Something for Everyone 🍕</h2>
+
+        <p>
+          Explore our delicious collection of pizzas.
+        </p>
+
+        <div>
+          <span class="tag">🟢 Vegetarian</span>
+          <span class="tag">🔴 Non-Vegetarian</span>
+          <span class="tag">🌶️ Spicy</span>
+          <span class="tag">🧀 Extra Cheesy</span>
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center">
+
+        <h2 class="fw-bold mb-3">
+          Ready for your next <span class="orange">slice?</span>
+        </h2>
+
+        <p class="text-secondary mb-4">
+          Explore our menu and find your perfect pizza.
+        </p>
+
+        <a href="index.html" class="btn btn-menu">
+          🍕 Explore Our Menu
+        </a>
+
+      </div>
+
+    </div>
+  </body>
+</html>

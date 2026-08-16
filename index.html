@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Slice & Spice | Artisan Pizzas</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Controller JS -->
+    <script src="./scripts/controller/controller.js" type="module"></script>
+
+    <!-- Ultimate Dark Theme + Side Drawer (Offcanvas) Style -->
+    <style>
+      :root {
+        --bg-primary: #0a0a0a;
+        --bg-card: #141416;
+        --border-color: rgba(255, 255, 255, 0.08);
+        --accent-orange: #ff5722;
+      }
+
+      body {
+        background-color: var(--bg-primary);
+        color: #f8fafc;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* Navbar Styling */
+      .navbar {
+        background: rgba(10, 10, 10, 0.85) !important;
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .navbar-brand-centered {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        background: linear-gradient(135deg, #ff5722, #ff9800);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 1.5rem;
+        text-decoration: none;
+      }
+
+      .pizza-logo-icon {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+        filter: drop-shadow(0 2px 6px rgba(255, 87, 34, 0.5));
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: #cbd5e1 !important;
+        transition: color 0.2s;
+      }
+
+      .nav-link:hover {
+        color: #ff5722 !important;
+      }
+
+      /* Side Drawer (Offcanvas) Customization */
+      .offcanvas {
+        background-color: #141416 !important;
+        color: #f8fafc !important;
+        border-left: 1px solid var(--border-color);
+      }
+
+      .offcanvas-header {
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .btn-close {
+        filter: invert(1) grayscale(100%) brightness(200%);
+      }
+
+      /* Hero Banner */
+      .hero-banner {
+        background: linear-gradient(
+            135deg,
+            rgba(255, 87, 34, 0.1),
+            rgba(20, 20, 22, 0.8)
+          ),
+          url("https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop")
+            center/cover;
+        border-radius: 24px;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      }
+
+      /* Search Box Styling */
+      .search-input {
+        background-color: #161619 !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        color: #fff !important;
+        border-radius: 16px;
+        padding: 16px 24px;
+        font-size: 1rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .search-input:focus {
+        border-color: var(--accent-orange) !important;
+        box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.2) !important;
+        background-color: #1e1e24 !important;
+      }
+
+      .search-input::placeholder {
+        color: #71717a;
+      }
+
+      /* Card Styling */
+      .card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow: hidden;
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(255, 87, 34, 0.4);
+        box-shadow: 0 20px 40px rgba(255, 87, 34, 0.15);
+      }
+
+      .card img {
+        height: 220px;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .card:hover img {
+        transform: scale(1.06);
+      }
+
+      .card-title {
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+
+      .card-text {
+        color: #94a3b8;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      /* Buttons */
+      .btn-primary {
+        background: linear-gradient(135deg, #ff5722, #f4511e);
+        border: none;
+        border-radius: 14px;
+        font-weight: 600;
+        padding: 12px 20px;
+        box-shadow: 0 4px 16px rgba(255, 87, 34, 0.35);
+        transition: all 0.2s ease;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #f4511e, #e64a19);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 22px rgba(255, 87, 34, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar with Side Drawer (Offcanvas) Trigger -->
+    <nav class="navbar navbar-dark sticky-top py-3 mb-4">
+      <div class="container d-flex justify-content-between align-items-center">
+        <!-- Left: Hamburger button that opens the sidebar from the side -->
+        <button
+          class="navbar-toggler border-0 shadow-none"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#sideMenu"
+          aria-controls="sideMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Center: Brand Logo with Pizza Slice Photo -->
+        <a class="navbar-brand-centered mx-auto" href="index.html">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1404/1404945.png"
+            alt="Pizza Slice"
+            class="pizza-logo-icon"
+          />
+          <span>Slice &amp; Spice</span>
+        </a>
+
+        <!-- Right spacer balance for flex layout -->
+        <div style="width: 40px"></div>
+      </div>
+    </nav>
+
+    <!-- Side Drawer (Offcanvas Sidebar coming from the left/right side) -->
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="sideMenu"
+      aria-labelledby="sideMenuLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title fw-bold text-warning" id="sideMenuLabel">
+          🍕 Menu & Navigation
+        </h5>
+        <button
+          type="button"
+          class="btn-close shadow-none"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column gap-3">
+        <a
+          href="index.html"
+          class="btn btn-outline-light text-start py-3 px-3 rounded-3 fw-semibold"
+          >🏠 Home Menu</a
+        >
+        <a
+          href="about.html"
+          class="btn btn-outline-light text-start py-3 px-3 rounded-3 fw-semibold"
+          >ℹ️ About Us</a
+        >
+        <a
+  href="basket.html"
+  class="btn btn-warning text-dark text-start py-3 px-3 rounded-3 fw-bold mt-2"
+  >🛒 View Basket</a
+>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container py-3">
+      <!-- Hero Header -->
+      <div class="hero-banner p-5 mb-5 text-center text-md-start">
+        <div class="row align-items-center">
+          <div class="col-md-7">
+            <span
+              class="badge bg-warning text-dark px-3 py-1.5 rounded-pill fw-bold mb-3"
+              >🔥 Freshly Baked Daily</span
+            >
+            <h1 class="display-5 fw-extrabold text-white mb-2">
+              Artisan Pizza Masterpieces
+            </h1>
+            <p class="text-light opacity-75 lead mb-0">
+              Handcrafted with premium ingredients, real mozzarella, and baked
+              to perfection.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Box -->
+<div class="row mb-3">
+  <div class="col-md-6 offset-md-3">
+    <input
+      type="text"
+      id="searchBox"
+      class="form-control search-input"
+      placeholder="🔍 Search mouth-watering pizzas or ingredients..."
+    />
+  </div>
+</div>
+
+<!-- Pizza Category Filters -->
+<div class="text-center mb-5">
+  <button id="allBtn" class="btn btn-primary me-2">
+    🍕 All
+  </button>
+
+  <button id="vegBtn" class="btn btn-success me-2">
+    🟢 Veg
+  </button>
+
+  <button id="nonVegBtn" class="btn btn-danger">
+    🔴 Non-Veg
+  </button>
+</div>
+      <!-- Pizza Cards Grid Output -->
+      <div class="row g-4" id="output"></div>
+    </div>
+    <!-- Basket Drawer -->
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="cartDrawer"
+  aria-labelledby="cartDrawerLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title fw-bold" id="cartDrawerLabel">
+      🛒 Your Basket
+    </h5>
+
+    <button
+      type="button"
+      class="btn-close shadow-none"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <div id="cartItems">
+      <p class="text-secondary">Your basket is empty.</p>
+    </div>
+
+    <hr />
+
+    <div class="d-flex justify-content-between fw-bold fs-5">
+      <span>Total</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+
+    <a
+  href="basket.html"
+  class="btn btn-primary w-100 mt-4 text-white text-decoration-none text-center"
+>
+  Proceed to Checkout
+</a>
+  </div>
+</div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
