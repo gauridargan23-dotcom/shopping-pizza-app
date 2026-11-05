@@ -1,0 +1,41 @@
+
+name: Slice and Spice CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t slice-spice .
+
+      - name: Run Docker container
+        run: docker run -d -p 8080:80 --name slice-spice-app slice-spice
+
+      - name: Test application
+        run: |
+          for i in {1..10}; do
+            if curl -fsS -o /dev/null http://localhost:8080/; then
+              echo "Website is responding successfully!"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Website test failed!"
+          docker logs slice-spice-app
+          exit 1
+
+      - name: Stop Docker container
+        if: always()
+        run: docker rm -f slice-spice-app || true
